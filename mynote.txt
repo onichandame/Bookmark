@@ -1,0 +1,3 @@
+try use JFileChooser
+try use inputStream to read bookmarks in jar instead of /Bookmark/bookmarks
+try use XML to format the panel(not tested at all)
