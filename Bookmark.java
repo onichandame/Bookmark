@@ -106,7 +106,7 @@ public class Bookmark {
     private static JPanel panel1() {
         JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayout(0, 3));
-        class myActionListener implements ActionListener {
+        class ActionListenerDisplayPanel implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -118,10 +118,10 @@ public class Bookmark {
         }
         ButtonGroup gr = new ButtonGroup();
         for (int i = 0; i < Books.getSize(); i++) {
-            JRadioButton jrb = new JRadioButton(Books.getName(i) + "  " + Books.getPage(i));
+            JRadioButton jrb = new JRadioButton(Books.getName(i) + ": " + Books.getPage(i));
             jrb.setActionCommand("" + i);
             gr.add(jrb);
-            jrb.addActionListener(new myActionListener());
+            jrb.addActionListener(new ActionListenerDisplayPanel());
             panel1.add(jrb);
         }
         return panel1;
@@ -139,23 +139,11 @@ public class Bookmark {
         panel2.add(jbt0);
         panel2.add(jbt1);
         panel2.add(jbt2);
-        panel2.add(jbt6);
+        panel2.add(jbt3);
         panel2.add(jbt4);
         panel2.add(jbt5);
-        panel2.add(jbt3);
-        jbt6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (idx < 0) {
-                    JOptionPane.showMessageDialog(null, "You haven't selected a book!", "No Selection", JOptionPane.INFORMATION_MESSAGE);
-                    return;
-                }
-                Books.get(idx).setPath(getInput("Enter the new path:", "New Path", ""));
-                fr.dispose();
-                fr = new JFrame();
-                getFrame();
-            }
-        });
+        panel2.add(jbt6);
+        //open
         jbt0.addActionListener(new ActionListener() {
 
             @Override
@@ -249,6 +237,19 @@ public class Bookmark {
                     return;
                 }
                 Books.deleteBook(idx);
+                fr.dispose();
+                fr = new JFrame();
+                getFrame();
+            }
+        });
+       jbt6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (idx < 0) {
+                    JOptionPane.showMessageDialog(null, "You haven't selected a book!", "No Selection", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+                Books.get(idx).setPath(getInput("Enter the new path:", "New Path", ""));
                 fr.dispose();
                 fr = new JFrame();
                 getFrame();
