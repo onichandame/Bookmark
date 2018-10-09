@@ -161,28 +161,24 @@ public class Bookmark {
                                 JOptionPane.showMessageDialog(null, "The url path of ¡¶" + Books.get(idx).getName() + "¡· is not a valid url path.", "Incorrect URL", JOptionPane.WARNING_MESSAGE);
                             }
                         } catch (IOException ex) {
-                            JOptionPane.showMessageDialog(null, "An unknown error occured in line196.", "Error", JOptionPane.WARNING_MESSAGE);
+                            JOptionPane.showMessageDialog(null, "An unknown error occured in line"+getLineNumber()+".", "Error", JOptionPane.WARNING_MESSAGE);
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Desktop is currently not supported on this platform. Check availibility of desktop.", "Cannot open desktop", JOptionPane.WARNING_MESSAGE);
                     }
-                } else if (Books.get(idx).getPath().contains("books")) {
+                } else if (Books.get(idx).getPath().contains("C:\\")) {
                     String path = "C:\\Users\\xiao\\SkyDrive\\Documents\\Books\\books\\" + Books.get(idx).getName() + ".pdf";
-                    try {
-                        Runtime.getRuntime().exec("explorer.exe /n," + path);
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(null, "File not available at the location");
+                    if (Desktop.isDesktopSupported()){
+                    try{
+                    Desktop.getDesktop().open(new File(path))};
+                    catch (Exception e){
+                    JOptionPane.showMessageDialog(null,"File path is not valid! Please update the path.","File not Found",JOptionPane.WARNING_MESSAGE);}}
+                    else JOptionPane.showMessageDialog(null, "Desktop is currently not supported on this platform. Check availibility of desktop.", "Cannot open desktop", JOptionPane.WARNING_MESSAGE);
                     }
-                } else if (Books.get(idx).getPath().contains("Lecture Notes")) {
-                    String path = "C:\\Users\\xiao\\SkyDrive\\Lecture Notes\\Third Year\\PHYS311-Particle Physics\\" + Books.get(idx).getName() + ".pdf";
-                    try {
-                        Runtime.getRuntime().exec("explorer.exe /n," + path);
-                    } catch (IOException ex) {
-                        JOptionPane.showMessageDialog(null, "File not available at the location");
-                    }
-                }
-            }
+                } 
         });
+        //update bookname
+        //use JFileChooser to replace update bookname, update bookpath, add new book
         jbt1.addActionListener((ActionEvent e) -> {
             if (idx < 0) {
                 JOptionPane.showMessageDialog(null, "You haven't selected a book!", "No Selection", JOptionPane.INFORMATION_MESSAGE);
