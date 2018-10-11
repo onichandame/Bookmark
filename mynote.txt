@@ -1,3 +1,4 @@
 try use JFileChooser
 find a clever way to store information on drive
 try use XML to format the panel(not tested at all)
+developing the jcombobox popped in addBook.addFromPath
