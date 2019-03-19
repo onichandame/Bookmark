@@ -1,5 +1,0 @@
-try use JFileChooser
-find a clever way to store information on drive
-try use XML to format the panel(not tested at all)
-developing the jcombobox popped in addBook.addFromPath
-the IO including detection of the sub-folders and creation of the missing sub-foldersand read/write from/to the Books.data have been finished
